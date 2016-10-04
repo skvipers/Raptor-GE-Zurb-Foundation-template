@@ -1,0 +1,91 @@
+.body-gui {background: url(../img/background.jpg);}
+
+.login-block {background: url(../img/universe.jpg) no-repeat center center; width: 100%; min-height: 600px; position: relative;}
+.login-block-color {color: #e6e6e6;}
+.login-block-inner {position: absolute; top: 25%; padding-right: 25%; padding-left: 25%; width: 100%;}
+
+.footer-bottom {
+	background: #333;
+	padding: 24px 0 10px;
+}
+
+.footer-bottom .links {
+	margin: 0;
+	display: inline-block;
+	padding-bottom: 0px;
+}
+
+.footer-bottom .links li {
+  display: block;
+  float: left;
+  margin-left: 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+	
+.footer-bottom .links a {
+   color: #666;
+   padding: 3px 6px;
+}
+
+.footer-bottom .copyright {
+  margin: 6px 0 0;
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.footer-bottom .home-social {
+  display: block;
+  float: right;
+  margin-bottom: 8px;
+}
+
+.footer-bottom .home-social li {
+  display: block;
+  float: left;
+  margin-left: 6px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.footer-bottom .home-social a {
+  display: block;
+  height: 54px;
+  width: 54px;
+  background: url(../img/social.png) no-repeat center 0;
+}
+
+.footer-bottom .home-social a.vk {
+  background-position: -222px -116px;
+}
+
+.footer-bottom .home-social a.mail {
+  background-position: -660px -667px;
+}
+
+.logo {
+	color: #858585;
+	font-weight: normal;
+	padding: 23px 0 0 0 !important;
+	display: inline-block;
+	width: 160px;
+}
+
+.chat-title {
+    background: #5899e8;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.chat {
+    background: #e6e6e6;
+    margin-top: 25px;
+    color: #463a3a;
+}
+
+.chat-body {
+  padding: 10px;
+}

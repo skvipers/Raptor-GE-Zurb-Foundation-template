@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?=\Raptor\Config::game_title;?></title>
+    <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/storage/foundation/css/app.css">
+		<link rel="stylesheet" href="/engine/templates/css/index.css">
+  </head>
+  <body class="body-gui">
+		<script>
+			function modal_set(url)
+			{
+				$('#modal-iframe')[0].src = url;
+			}
+		</script>
+		
+		<div class="top-bar">
+			<div class="top-bar-left">
+				<ul class="menu icon-top">
+					<li><a id="modal-1" onclick="modal_set('/profile/<?=$char->_id;?>');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/cowled.png"><span>Профиль</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/inventory');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/backpack.png"><span>Инвентарь</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/money');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/cash.png"><span>Деньги</span></a></li>
+				</ul>
+			</div>
+			<div class="top-bar-right">
+				<ul class="menu icon-top">
+					<?php if(count($char->perms) >= 1) { ?>
+						<li><a href="/admin" target="_blank"><img src="/engine/templates/img/stone-throne.png"><span>Админ-панель</span></a></li>
+					<?php } ?>
+					<li><a href="/auth/logout"><img src="/engine/templates/img/wooden-door.png"><span>Выход</span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+			<div class="large-3 columns">
+				<div class="chat">
+					<div class="chat-title">Чат</div>
+					<div class="chat-body">
+						<div id="chat-messages">
+							<b>%NICK%</b>: %MESSAGE%</br>
+						</div>
+						<form>
+							<div>
+								<input class="form-control" id="inputEmail3" type="text" />
+								<button type="submit" onclick="return false;" class="button">Отправить</button>
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="large-6 columns">
+				<div class="location" style="margin-top: 25px; padding: 5px;">
+					<div class="row" style="background: #fff">
+						<div class="large-12 columns">
+							<?=($char->__get('location') == 0 ? '<h3>Вы не находитесь в какой-либо локации!</h3>' : $char->location->asHTML());?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="large-3 columns">
+				<div class="chat">
+					<div class="chat-title">Локация: <?=$char->location->name;?></div>
+					<div class="chat-body">
+						<ul class="vertical dropdown menu" data-dropdown-menu>						
+							<?php foreach(\Auth\Char::onlineList(true) as $ch) { ?>
+								<li>
+									<table style="margin-bottom: 5px;">
+										<tbody>
+											<tr>
+												<td style="width: 61px; padding-top: 10px;"><img src="/storage/predef/avatar.png" style="max-height:40px;"></td>
+												<td>
+													<a id="charact_<?=$ch->id;?>" href="#"><?=$ch->name;?></a>
+													</br><small><?=$ch->status;?></small>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+								  <ul class="menu" aria-labelledby="charact_<?=$ch->id;?>">
+										<?php foreach(\Auth\Char::getActions() as $k => $v) { ?>
+											<li><a href="#" onclick="Game.char_click('<?=$ch->id;?>', '<?=$v['_id'];?>')"><?=$v['name'];?></a></li>
+										<?php } ?>
+									</ul>
+								</li>
+							<?php } ?>					
+						</ul>
+					</div>
+				</div>
+			</div>
+		
+		<!-- Modal -->
+    <div class="reveal" id="guiModal" style="width: 90%; height: 80%" data-reveal>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<p style="height: 9px;"></p>
+			<iframe id='modal-iframe' width=100% height=90% src='/profile/<?=$char->_id;?>'></iframe>
+		</div>
+
+    <script src="/storage/foundation/js/vendor/jquery.js"></script>
+    <script src="/storage/foundation/js/vendor/what-input.js"></script>
+    <script src="/storage/foundation/js/vendor/foundation.js"></script>
+    <script src="/storage/foundation/js/app.js"></script>
+		<script src="/storage/predef/raptorge.js"></script>
+  </body>
+</html>

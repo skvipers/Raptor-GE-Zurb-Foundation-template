@@ -1,0 +1,129 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?=\Raptor\Config::game_title;?></title>
+    <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/storage/foundation/css/app.css">
+		<link rel="stylesheet" href="/engine/templates/css/index.css">
+		<script>
+			<?=(isset($_GET['ok']) ? "alert('Вы успешно зарегистрировались');" : '');?>
+		</script>
+  </head>
+  <body>
+	
+		<div class="top-bar">
+			<div class="top-bar-left">
+				<ul class="dropdown menu" data-dropdown-menu>
+					<li class="menu-text"><?=\Raptor\Config::game_title;?></li>
+					<li><a href="/">Главная</a></li>
+					<li><a href="#">Форум</a></li>
+					<li><a href="#">Wiki</a></li>
+				</ul>
+			</div>
+			<div class="top-bar-right">
+				<ul class="menu">
+					<li><a class="button" href="/registration">Регистрация</a></li>
+				</ul>
+			</div>
+		</div>
+			
+		<div class="login-block">
+			<div class="login-block-inner">
+				<form action='/auth/register' method='POST'>
+					<h1 class="login-block-color" style="text-align: center;">Регистрация</h1>
+					<label class="login-block-color">Логин
+						<input type="text" name="login">
+					</label>
+					<label class="login-block-color">Пароль
+						<input type="password" name="password" style="margin-bottom: 5px">
+					</label>
+					<button class="button" type="submit" style="margin-top: 5px">Регистрация</button>
+				</form>
+			</div>
+		</div>
+		
+    <div class="row">
+	
+      <div class="large-12 columns">
+        <h1>О игре!</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="callout">
+          <h3>Эта игра сделана на Raptor Game Engine! </h3>
+          <p>Lorem ipsum dolor sit amet, odio fuisset torquatos ex qui, alii nonumes ius cu, at sit graeco deseruisse. Ex nec suavitate moderatius mediocritatem, cu has unum volumus sapientem, quidam honestatis mea ex. Te mei senserit facilisis, et prima eruditi theophrastus his. In fugit vulputate sea, eum et diceret qualisque efficiendi. Dicta volutpat ea eam.</p>
+          <p>
+Ius ei utamur eruditi delicata, ut nam omnis meliore. Mei oratio noluisse sensibus in. Illum mucius noluisse no ius, tation utinam munere te sit. Ex cum congue prompta. Sea paulo disputationi vituperatoribus ne, eu salutatus reprehendunt mediocritatem per, agam mutat at his.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-8 medium-8 columns">
+        <h4>Новости</h4>
+				<?php foreach(\Mmorpg\News::getAll() as $a) { if($a['show'] != 1) continue; ?>
+					<div style='margin-top: 15px; margin-bottom: 15px;'>
+					<h5><?=$a['title'];?></h5>			
+					<div id='short<?=$a['_id'];?>'>
+						<?=nl2br($a['short']);?>
+						<p><a href='javascript:void(0)' onclick='return short_to_full(<?=$a['_id'];?>);'>показать полностью...</a></p>
+					</div>
+					<div style='display: none;' id='full<?=$a['_id'];?>'>
+						<?=nl2br($a['full']);?>
+					</div>
+					<span class="input-group-label"><font size=1>Дата публикации: <?=date('d.m.Y H:i', $a['time']);?></font></span>
+					</div>
+				<?php } ?>
+		
+        <hr />
+      </div>
+
+      <div class="large-4 medium-4 columns">
+        <h5>Контент:</h5>
+        <div class="callout">
+          <h5>Блок текста</h5>
+          <p>In accusam accumsan vis. Ut quo commodo noluisse, quo urbanitas efficiendi delicatissimi an, propriae cotidieque qui ea. Omnesque epicurei reprehendunt mei cu, in eos omnes populo instructior. Fabulas labores persequeris ad ius, eos efficiendi dissentiunt cu. Quas errem at quo, accumsan praesent ocurreret eam an, ne qui simul civibus accusata.</p>
+        </div>
+      </div>
+    </div>
+		
+		<div class="footer-bottom">
+			<div class="row">
+				<div class="medium-4 medium-push-8 columns">
+					<ul class="home-social">
+					<li><a href="https://vk.com/raptorge" class="vk"></a></li>
+					<li><a href="#" class="mail"></a></li>
+					</ul>
+				</div>
+				<div class="medium-8 medium-pull-4 columns">
+					<a href="http://www.raptorge.net" class="logo">Raptor Game Engine</a>
+					<ul class="links">
+						<li><a href="#">Вход</a></li>
+						<li><a href="#">Регистрация</a></li>
+						<li><a href="#">Новости</a></li>
+					</ul>
+					<p class="copyright">&copy; 2016 <?=\Raptor\Config::game_title;?>, все права защищены.</p>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function short_to_full(id)
+			{
+				$('#short' + id)[0].style.display = 'none';
+				$('#full' + id)[0].style.display = 'block';
+				return false;
+			}
+		</script>
+		<script type="text/javascript" src="/storage/predef/mainpage.js"></script>
+    <script src="/storage/foundation/js/vendor/jquery.js"></script>
+    <script src="/storage/foundation/js/vendor/what-input.js"></script>
+    <script src="/storage/foundation/js/vendor/foundation.js"></script>
+    <script src="/storage/foundation/js/app.js"></script>
+  </body>
+</html>

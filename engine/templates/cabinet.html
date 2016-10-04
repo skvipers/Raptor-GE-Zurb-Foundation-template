@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет | <?=\Raptor\Config::game_title;?></title>
+    <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
+    <link rel="stylesheet" href="/storage/foundation/css/app.css">
+		<link rel="stylesheet" href="/engine/templates/css/index.css">
+  </head>
+  <body>
+	
+		<div class="top-bar">
+			<div class="top-bar-left">
+				<ul class="dropdown menu" data-dropdown-menu>
+					<li class="menu-text"><?=\Raptor\Config::game_title;?></li>
+					<li><a><?=$player->login;?></a></li>
+				</ul>
+			</div>
+			<div class="top-bar-right">
+				<ul class="menu">
+					<li><a href="#">Документация</a></li>
+					<li><a href="/auth/logout">Выход</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- Modal -->
+    <center>
+      <div class="reveal" id="newCharacter" aria-labelledby="newCharacterModalHeader" data-reveal>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+					<span aria-hidden="true">&times;</span>
+				</button>
+        <p class="lead" id="newCharacterModalHeader">Создание нового персонажа</p>
+        <div class="callout warning">Выбирайте имя персонажа тщательно, сменить его вы сможете только обратившись в техническую поддержку.</div>
+        <form method="post" action="/cabinet/new">
+          <label>Имя персонажа
+            <input type="text" name="name" required>
+					</label>
+          <button type="submit" class="success button">Создать</button>
+        </form>
+			</div>
+    </center>
+			
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Личный кабинет персонажа</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="callout">
+          <h3>Привет, <?=$player->login;?></h3>
+          <p>Начните играть прямо сейчас, или ознакомьтесь со всеми функциями личного кабинета для более комфортной игры!</p>
+					<button type="button" class="success button" data-toggle="modal" data-open="newCharacter">Новый персонаж</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-8 medium-8 columns">
+        <h4>Новости</h4>
+				<?php foreach(\Mmorpg\News::getAll() as $a) { if($a['show'] != 1) continue; ?>
+					<div style='margin-top: 15px; margin-bottom: 15px;'>
+					<h5><?=$a['title'];?></h5>			
+					<div id='short<?=$a['_id'];?>'>
+						<?=nl2br($a['short']);?>
+						<p><a href='javascript:void(0)' onclick='return short_to_full(<?=$a['_id'];?>);'>показать полностью...</a></p>
+					</div>
+					<div style='display: none;' id='full<?=$a['_id'];?>'>
+						<?=nl2br($a['full']);?>
+					</div>
+					<span class="input-group-label"><font size=1>Дата публикации: <?=date('d.m.Y H:i', $a['time']);?></font></span>
+					</div>
+				<?php } ?>
+		
+        <hr />
+      </div>
+
+      <div class="large-4 medium-4 columns">
+        <h5>Список персонажей (<?=count($chars);?>):</h5>
+        <div class="callout">
+          <div class="table-scroll">
+						<table>
+						  <thead>
+                <tr>
+                  <th>Имя персонажа</th>
+                </tr>
+              </thead>
+							<tbody>
+								<?php foreach($chars as $c) { ?>
+									<tr> 
+										<td><a href="/cabinet/select?id=<?=(string)$c->_id;?>"><?=($c->name)?></a></td>
+									</tr>
+								<?php } ?>
+							</tbody>
+						</table>
+					</div>
+        </div>
+      </div>
+    </div>
+
+		<script>
+			function short_to_full(id)
+			{
+				$('#short' + id)[0].style.display = 'none';
+				$('#full' + id)[0].style.display = 'block';
+				return false;
+			}
+		</script>
+    <script src="/storage/foundation/js/vendor/jquery.js"></script>
+    <script src="/storage/foundation/js/vendor/what-input.js"></script>
+    <script src="/storage/foundation/js/vendor/foundation.js"></script>
+    <script src="/storage/foundation/js/app.js"></script>
+  </body>
+</html>
