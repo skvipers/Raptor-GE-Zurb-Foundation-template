@@ -5,9 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=\Raptor\Config::game_title;?></title>
-    <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
-    <link rel="stylesheet" href="/storage/foundation/css/app.css">
-		<link rel="stylesheet" href="/storage/raptor_foundation/css/index.css">
+    <link rel="stylesheet" href="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/css/foundation.css">
+    <link rel="stylesheet" href="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/css/app.css">
+		<link rel="stylesheet" href="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/css/index.css">
   </head>
   <body class="body-gui">
 		<script>
@@ -20,17 +20,17 @@
 		<div class="top-bar">
 			<div class="top-bar-left">
 				<ul class="menu icon-top">
-					<li><a id="modal-1" onclick="modal_set('/profile/<?=$char->_id;?>');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/cowled.png"><span>Профиль</span></a></li>
-					<li><a id="modal-1" onclick="modal_set('/inventory');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/backpack.png"><span>Инвентарь</span></a></li>
-					<li><a id="modal-1" onclick="modal_set('/money');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/cash.png"><span>Деньги</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/profile/<?=$char->_id;?>');" data-toggle="modal" data-open="guiModal"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/img/cowled.png"><span>Профиль</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/inventory');" data-toggle="modal" data-open="guiModal"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/img/backpack.png"><span>Инвентарь</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/money');" data-toggle="modal" data-open="guiModal"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/img/cash.png"><span>Деньги</span></a></li>
 				</ul>
 			</div>
 			<div class="top-bar-right">
 				<ul class="menu icon-top">
 					<?php if(count($char->perms) >= 1) { ?>
-						<li><a href="/admin" target="_blank"><img src="/storage/raptor_foundation/img/stone-throne.png"><span>Админ-панель</span></a></li>
+						<li><a href="/admin" target="_blank"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/img/stone-throne.png"><span>Админ-панель</span></a></li>
 					<?php } ?>
-					<li><a href="/auth/logout"><img src="/storage/raptor_foundation/img/wooden-door.png"><span>Выход</span></a></li>
+					<li><a href="/auth/logout"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/raptor_foundation/img/wooden-door.png"><span>Выход</span></a></li>
 				</ul>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
 									<table style="margin-bottom: 5px;">
 										<tbody>
 											<tr>
-												<td style="width: 61px; padding-top: 10px;"><img src="/storage/predef/avatar.png" style="max-height:40px;"></td>
+												<td style="width: 61px; padding-top: 10px;"><img src="<?=\Raptor\Config::WEB_ROOT;?>/storage/predef/avatar.png" style="max-height:40px;"></td>
 												<td>
 													<a id="charact_<?=$ch->id;?>" href="#"><?=$ch->name;?></a>
 													</br><small><?=$ch->status;?></small>
@@ -100,10 +100,10 @@
 			<iframe id='modal-iframe' width=100% height=90% src='/profile/<?=$char->_id;?>'></iframe>
 		</div>
 
-    <script src="/storage/foundation/js/vendor/jquery.js"></script>
-    <script src="/storage/foundation/js/vendor/what-input.js"></script>
-    <script src="/storage/foundation/js/vendor/foundation.js"></script>
-    <script src="/storage/foundation/js/app.js"></script>
-		<script src="/storage/predef/raptorge.js"></script>
+    <script src="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/js/vendor/jquery.js"></script>
+    <script src="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/js/vendor/what-input.js"></script>
+    <script src="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/js/vendor/foundation.js"></script>
+    <script src="<?=\Raptor\Config::WEB_ROOT;?>/storage/foundation/js/app.js"></script>
+		<script src="<?=\Raptor\Config::WEB_ROOT;?>/storage/predef/raptorge.js"></script>
   </body>
 </html>
