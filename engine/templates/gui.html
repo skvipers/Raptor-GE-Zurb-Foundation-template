@@ -7,7 +7,7 @@
     <title><?=\Raptor\Config::game_title;?></title>
     <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
     <link rel="stylesheet" href="/storage/foundation/css/app.css">
-		<link rel="stylesheet" href="/engine/templates/css/index.css">
+		<link rel="stylesheet" href="/storage/raptor_foundation/css/index.css">
   </head>
   <body class="body-gui">
 		<script>
@@ -20,17 +20,17 @@
 		<div class="top-bar">
 			<div class="top-bar-left">
 				<ul class="menu icon-top">
-					<li><a id="modal-1" onclick="modal_set('/profile/<?=$char->_id;?>');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/cowled.png"><span>Профиль</span></a></li>
-					<li><a id="modal-1" onclick="modal_set('/inventory');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/backpack.png"><span>Инвентарь</span></a></li>
-					<li><a id="modal-1" onclick="modal_set('/money');" data-toggle="modal" data-open="guiModal"><img src="/engine/templates/img/cash.png"><span>Деньги</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/profile/<?=$char->_id;?>');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/cowled.png"><span>Профиль</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/inventory');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/backpack.png"><span>Инвентарь</span></a></li>
+					<li><a id="modal-1" onclick="modal_set('/money');" data-toggle="modal" data-open="guiModal"><img src="/storage/raptor_foundation/img/cash.png"><span>Деньги</span></a></li>
 				</ul>
 			</div>
 			<div class="top-bar-right">
 				<ul class="menu icon-top">
 					<?php if(count($char->perms) >= 1) { ?>
-						<li><a href="/admin" target="_blank"><img src="/engine/templates/img/stone-throne.png"><span>Админ-панель</span></a></li>
+						<li><a href="/admin" target="_blank"><img src="/storage/raptor_foundation/img/stone-throne.png"><span>Админ-панель</span></a></li>
 					<?php } ?>
-					<li><a href="/auth/logout"><img src="/engine/templates/img/wooden-door.png"><span>Выход</span></a></li>
+					<li><a href="/auth/logout"><img src="/storage/raptor_foundation/img/wooden-door.png"><span>Выход</span></a></li>
 				</ul>
 			</div>
 		</div>

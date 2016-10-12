@@ -7,7 +7,8 @@
     <title>Личный кабинет | <?=\Raptor\Config::game_title;?></title>
     <link rel="stylesheet" href="/storage/foundation/css/foundation.css">
     <link rel="stylesheet" href="/storage/foundation/css/app.css">
-		<link rel="stylesheet" href="/engine/templates/css/index.css">
+		<link rel="stylesheet" href="/storage/raptor_foundation/css/index.css">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css?hash=9d47f56fe7dbfb149309eb818c7601fc">
   </head>
   <body>
 	
@@ -15,12 +16,17 @@
 			<div class="top-bar-left">
 				<ul class="dropdown menu" data-dropdown-menu>
 					<li class="menu-text"><?=\Raptor\Config::game_title;?></li>
-					<li><a><?=$player->login;?></a></li>
+					<li>
+						<a><?=$player->login;?></a>
+						<ul class="menu vertical">
+						<li><a onclick="return new_password()"><i class="fi-key"></i><span>Сменить пароль</span></a></li>
+        </ul>
+					</li>
 				</ul>
 			</div>
 			<div class="top-bar-right">
 				<ul class="menu">
-					<li><a href="#">Документация</a></li>
+					<li><a href="#"><i class="fi-page-doc"></i><span>Документация</span></a></li>
 					<li><a href="/auth/logout">Выход</a></li>
 				</ul>
 			</div>
@@ -54,7 +60,7 @@
         <div class="callout">
           <h3>Привет, <?=$player->login;?></h3>
           <p>Начните играть прямо сейчас, или ознакомьтесь со всеми функциями личного кабинета для более комфортной игры!</p>
-					<button type="button" class="success button" data-toggle="modal" data-open="newCharacter">Новый персонаж</button>
+					<button type="button" class="success button" data-toggle="modal" data-open="newCharacter"><i class="fi-plus"> </i><span>Новый персонаж</span></button>
         </div>
       </div>
     </div>
@@ -107,6 +113,17 @@
 			{
 				$('#short' + id)[0].style.display = 'none';
 				$('#full' + id)[0].style.display = 'block';
+				return false;
+			}
+		</script>
+		<script>
+			function new_password()
+			{
+				password = prompt('Укажите новый пароль');
+				if(!password) return;
+				$.get('<?=\Raptor\Config::WEB_ROOT;?>cabinet/password', {'new': 'admin'}, function(data) {
+					alert(data);
+				});
 				return false;
 			}
 		</script>
